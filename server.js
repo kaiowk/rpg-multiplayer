@@ -30,6 +30,11 @@ io.on('connection', (socket) => {
         });
     });
 
+        // Repassa as posições dos monstros enviadas pelo Host para todos os jogadores na sala
+    socket.on('updateMonsters', (monstersData) => {
+        socket.broadcast.emit('syncMonsters', monstersData);
+    });
+
 
     // Limpa o fantasma do jogador imediatamente ao desconectar
     socket.on('disconnect', () => {
