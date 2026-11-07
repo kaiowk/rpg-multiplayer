@@ -22,6 +22,15 @@ io.on('connection', (socket) => {
         }
     });
 
+        // Recebe a mensagem do chat e distribui para todos com o ID do jogador
+    socket.on('sendMessage', (messageText) => {
+        io.emit('newMessage', {
+            sender: socket.id.substring(0, 5), // Usa os primeiros 5 caracteres do ID como "Nome"
+            text: messageText
+        });
+    });
+
+
     // Limpa o fantasma do jogador imediatamente ao desconectar
     socket.on('disconnect', () => {
         io.emit('playerDisconnected', socket.id);
