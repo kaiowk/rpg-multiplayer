@@ -74,6 +74,9 @@ setInterval(() => {
     io.emit('state', { players, monsters });
 }, 1000 / 60);
 
-http.listen(3050, () => {
-    console.log('Servidor multiplayer rodando na porta 3050!');
+// Substitua o final do seu server.js por este bloco:
+const PORT = process.env.PORT || 3050;
+
+http.listen(PORT, '0.0.0.0', () => {
+    console.log(`Servidor multiplayer rodando na porta ${PORT}!`);
 });
