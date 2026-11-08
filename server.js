@@ -36,6 +36,12 @@ io.on('connection', (socket) => {
     });
 
 
+        // Avisa a todos que um monstro foi derrotado e deve ser removido do mapa
+    socket.on('monsterDefeated', (monsterId) => {
+        io.emit('removeMonster', monsterId);
+    });
+
+
     // Limpa o fantasma do jogador imediatamente ao desconectar
     socket.on('disconnect', () => {
         io.emit('playerDisconnected', socket.id);
